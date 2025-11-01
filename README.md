@@ -57,7 +57,7 @@ O sistema incentiva o usuário a se exercitar e o recompensa com moedas Capiba, 
 
 ---
 
-## 🧱 Estrutura Sugerida do Projeto
+## 🧱 Estrutura do Projeto
 
 ```
 CapibaFit/
@@ -100,7 +100,7 @@ Esses arquivos ficam em `/architecture/` e ajudam a manter a rastreabilidade té
 
 ---
 
-## 💻 Tecnologias (Sugestão)
+## 💻 Tecnologias 
 
 - **Frontend:** React ou Next.js  
 - **Backend:** Node.js (Express)  
