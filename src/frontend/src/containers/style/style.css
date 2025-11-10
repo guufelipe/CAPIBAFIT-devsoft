@@ -1,0 +1,187 @@
+/* Variáveis para fácil manutenção */
+:root {
+  --verde-principal: #38c172; /* Verde vibrante do box */
+  --texto-titulo: #333;
+  --texto-claro: #fff;
+  --sombra-leve: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Estilos do Extrato de Capibas --- */
+
+/* Estilo do Container Principal (apenas para centralizar/limitar) */
+.extrato-container {
+  padding: 20px;
+  max-width: 400px; 
+  margin: 20px auto; /* Adiciona margem vertical */
+  font-family: Arial, sans-serif;
+}
+
+/* Título */
+.extrato-titulo {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--texto-titulo);
+  margin-bottom: 15px;
+}
+
+/* Box Principal do Total Acumulado */
+.total-acumulado-box {
+  background-color: var(--verde-principal);
+  color: var(--texto-claro);
+  border-radius: 12px;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  position: relative; /* Base para o posicionamento das moedas */
+  overflow: hidden; 
+  box-shadow: var(--sombra-leve);
+}
+
+/* Wrapper para o Ícone de Capibara */
+.icone-capibara-wrapper {
+  background-color: var(--texto-claro);
+  border-radius: 8px;
+  padding: 5px;
+  width: 50px; 
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  flex-shrink: 0; 
+}
+
+.icone-capibara {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Wrapper do Texto e Valor */
+.texto-valor-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; 
+  align-self: flex-start;
+  padding-top: 5px; 
+}
+
+.texto-acumulado {
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.valor-acumulado {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1; 
+  margin-top: 5px;
+}
+
+/* Ícones de Moeda Decorativos */
+.icones-moeda-wrapper {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+}
+
+/* ✨ ESTILOS QUE ESTAVAM FALTANDO PARA AS MOEDAS ✨ */
+.icone-moeda {
+  display: inline-block;
+  width: 20px; 
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+/* Moeda de trás (simulando a sombra/opacidade) */
+.icone-moeda.um {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(5px) translateY(1px);
+  z-index: 1;
+}
+
+/* Moeda da frente */
+.icone-moeda.dois {
+  background-color: rgba(255, 255, 255, 0.1);
+  margin-left: -10px; 
+  z-index: 2;
+}
+
+/* --- Estilos do Botão de Sincronização --- */
+
+.sincronizar-wrapper {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Estilo Base do Botão */
+.btn-sync {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, opacity 0.3s;
+  color: white;
+  background-color: #007bff; /* Azul padrão */
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.btn-sync:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.btn-sync:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+/* 1. Estado Sincronizando (Loading) */
+.btn-sync.syncing {
+  background-color: #ffc107; /* Amarelo de atenção/loading */
+  color: #333;
+}
+
+/* Estilo do Spinner (Animação de Carregamento) */
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  /* A cor padrão do spinner deve ser clara (white) para contrastar com o azul padrão */
+  border-top: 4px solid white; 
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+/* Ajuste de cor do spinner para o estado 'syncing' (amarelo) */
+.btn-sync.syncing .spinner {
+  border-top: 4px solid #333; /* Muda para escuro para contrastar com o fundo amarelo */
+}
+
+/* Animação de Rotação */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 2. Estado Sucesso */
+.btn-sync.success {
+  background-color: #28a745; /* Verde de sucesso */
+}
+
+/* Ajusta o espaçamento do ícone de sucesso/padrão */
+.btn-sync span[role="img"] {
+  margin-right: 8px;
+}
