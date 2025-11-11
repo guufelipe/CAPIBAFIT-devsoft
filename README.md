@@ -1,134 +1,100 @@
+
 # 🏃‍♂️ CapibaFit
 
-**CapibaFit** é uma plataforma digital gamificada que motiva e recompensa a prática de atividades físicas, transformando esforço em **moedas virtuais Capiba**, que podem ser trocadas por recompensas reais em comércios locais do Recife.
+Projeto educativo que converte atividade física em uma moeda virtual chamada "Capiba". Este repositório contém uma interface frontend construída com Vite + React e código de backend (lógica e integrações) em `src/backend`.
 
----
+> Nota rápida: o repositório não possui um servidor Node robusto pronto para produção — o `start` no root foi ajustado para subir o frontend de desenvolvimento (Vite). O backend contém módulos e serviços, mas não há um arquivo único `index.js` na raiz.
 
-## 🎯 Visão do Projeto
+## Status atual
 
-O CapibaFit busca promover um estilo de vida mais ativo e saudável através da gamificação, conectando **atividade física, turismo e economia local**.  
-O sistema incentiva o usuário a se exercitar e o recompensa com moedas Capiba, que podem ser trocadas por produtos, serviços e descontos.
+- Frontend: presente em `src/frontend` — usa Vite + React. Há scripts de desenvolvimento e build em `src/frontend/package.json`.
+- Backend: código em `src/backend` (APIs, integrações, serviços), mas sem um servidor principal pronto para executar (nenhum `index.js`/`server.js` na raiz que inicialize um app Express automaticamente).
+- Testes: presentes em `tests/` e usam Jest. `npm test` no root executa os testes (depende de `node_modules` estar instalado).
 
----
+## Como rodar (desenvolvimento)
 
-## 👥 Público-Alvo
+1) Instale dependências (na raiz):
 
-- **Recifenses que se exercitam:** moradores que já praticam atividades físicas e desejam converter seu esforço em moedas Capiba.
-- **Turistas ativos:** visitantes que desejam explorar o Recife a pé ou de bicicleta enquanto acumulam recompensas.
+```powershell
+Set-Location -Path 'C:\caminho\para\devsofot-2025-2'
+npm install
+```
 
----
+2) Iniciar o frontend (recomendado):
 
-## 🚫 Fora do Escopo
+```powershell
+npm start
+```
 
-- O sistema **não fará gestão financeira** da moeda Capiba (apenas a contagem de recompensas).
-- **Não é uma ferramenta de monitoramento de saúde.**
-- **Não incluirá um marketplace** para venda de produtos (apenas resgate de descontos e vouchers).
+Esse comando inicia o dev server do Vite localizado em `src/frontend` e deve abrir a aplicação em http://localhost:5173/.
 
----
+Alternativas:
+- Rodar apenas o frontend:
 
-## 🧩 Funcionalidades Principais (Histórias de Usuário)
+```powershell
+npm --prefix src/frontend run dev
+```
 
-| Nº | Funcionalidade | Descrição |
-|----|----------------|------------|
-| 1 | Sincronizar atividades | Receber moedas Capiba com base na distância percorrida. |
-| 2 | Visualizar extrato de ganhos | Mostrar histórico de atividades e Capibas obtidas. |
-| 3 | Painel de metas | Exibir progresso diário e semanal em relação às metas. |
-| 4 | Desafio de boas-vindas | Conceder bônus na primeira atividade registrada. |
-| 5 | Bônus turístico | Recompensar atividades realizadas em pontos turísticos do Recife. |
-| 6 | Sequência de dias ativos | Dar bônus por manter uma rotina de exercícios consecutivos. |
-| 7 | Compartilhar conquistas | Permitir publicar resultados e metas nas redes sociais. |
+- Build de produção do frontend:
 
----
+```powershell
+npm --prefix src/frontend run build
+```
 
-## 📊 Priorização do Backlog
+## Testes
 
-1. **Prioridade 1 (Essencial / MVP)**
-   - Sincronizar e creditar moedas Capiba (núcleo do produto)
-   - Exibir extrato de ganhos
+Os testes estão em `tests/` e usam Jest. Para executar:
 
-2. **Prioridade 2 (Engajamento e UX)**
-   - Desafio de boas-vindas
-   - Painel de metas
-   - Compartilhamento de conquistas
+```powershell
+npm test
+```
 
-3. **Prioridade 3 (Diferencial e Expansão)**
-   - Bônus por sequência de dias
-   - Bônus em pontos turísticos
+Observação: se `jest` não for encontrado, rode `npm install` primeiro para instalar dependências locais.
 
----
-
-## 🧱 Estrutura do Projeto
+## Estrutura de pastas (resumida)
 
 ```
 devsofot-2025-2/
-├── README.md                  → Descrição geral do projeto
-│   └── readme.txt
-├── docs/                      → Documentação e materiais do projeto
-│   ├── decisions/             → ADRs detalhadas
-│   │   ├── 0001-definição-da-fonte-de-dados-para-atividades.md
-│   │   ├── 0002-mecanismo-de-comunicação-para-sincronização.md
-│   │   ├── 0003-serviço-de-geolocalização-geofencing.md
-│   │   ├── 0004-modelo-de-processamento-para-gamificação.md
-│   │   └── 0005-contabilização-do-bônus-progressivo.md
-│   └── readme.txt
-│   └── prototipo/             → Telas e wireframes
-├── src/                       → Código-fonte (frontend e backend)
-│   ├── backend/               → Lógica de negócio e APIs
-│   │   └── readme.txt
-│   ├── frontend/              → Interface do usuário
-│   │   └── readme.txt
-│   └── readme.txt
-├── tests/                     → Testes automatizados
-│   └── readme.txt
-└── README.md
+├─ README.md                # este arquivo
+├─ package.json             # scripts (start -> sobe frontend dev)
+├─ src/
+│  ├─ frontend/             # Vite + React app
+│  │  ├─ package.json
+│  │  └─ src/               # código React (main.jsx, components...)
+│  └─ backend/              # lógica do servidor, integrações e database
+│     ├─ api/
+│     ├─ database/
+│     ├─ integrations/
+│     └─ services/
+├─ docs/                    # documentação e ADRs
+└─ tests/                   # testes unitários/integracao (Jest)
 ```
 
----
+## Observações e recomendações
 
-## 🧠 Decisões Arquiteturais (ADRs)
+- Se você pretende rodar um servidor backend localmente, sugiro criar um arquivo `src/backend/server.js` (ou `index.js`) que inicialize um app Express e exponha endpoints. Posso criar um servidor mínimo com `nodemon` para desenvolvimento e ajustar scripts para rodar frontend + backend em paralelo.
+- Para desenvolvimento simultâneo frontend + backend, uma opção é adicionar `concurrently` como dependência de desenvolvimento e criar um script `dev` no root que execute os dois processos.
+- Incluir no README instruções de como configurar variáveis de ambiente (por exemplo, credenciais do banco ou endpoints) se houver integrações reais.
 
-As **ADRs (Architecture Decision Records)** documentam as principais decisões técnicas do projeto, como:
+## Rodando em CI
 
-- Linguagens e frameworks escolhidos;  
-- Estrutura do banco de dados;  
-- Padrões de arquitetura (ex: MVC, REST, etc.);  
-- Estratégias de autenticação, cache e escalabilidade.  
+- Em CI, preferível usar `npm ci` (instala uma cópia reprodutível das deps) e então:
 
-Esses arquivos ficam em `/docs/decisions/` para rastreabilidade técnica.
+```yaml
+# exemplo de passos:
+npm ci
+npm --prefix src/frontend ci
+npm test
+```
 
----
+## Contato / Contribuição
 
-## 💡 Principais Pilares do Projeto
-
-- **Registro de Atividades e Recompensas:** transformar esforço físico em valor (moeda Capiba).  
-- **Gamificação:** aumentar engajamento e retenção dos usuários.  
-- **Transparência na Experiência do Usuário:** clareza sobre ganhos e progresso.  
-- **Valorização do Recife:** integrar pontos turísticos e incentivar o turismo ativo.
-
----
-
-## 💻 Tecnologias 
-
-- **Frontend:** React ou Next.js  
-- **Backend:** Node.js (Express)  
-- **Banco de Dados:** MongoDB ou PostgreSQL  
-- **Geolocalização:** Google Maps API / OpenStreetMap  
-- **Autenticação:** JWT / OAuth2  
+Se quiser, eu posso:
+- criar um servidor backend mínimo e scripts `dev`/`start` para rodar tudo junto;
+- adicionar instruções de variáveis de ambiente e um exemplo `.env.example`;
+- configurar um workflow de CI simples (GitHub Actions) que rode testes.
 
 ---
 
-## 👨‍💻 Equipe de Desenvolvimento
+Licença: projeto para fins educacionais (Equipe 10 - SI 2025.2).
 
-**Equipe 10 – Desenvolvimento de Software (SI 2025.2)**  
-- André Luiz  
-- Gustavo Felipe  
-- Lucas Marques  
-- Robson  
-- William  
-
----
-
-## 📄 Licença
-
-Este projeto foi desenvolvido para fins educacionais no curso de **Desenvolvimento de Software - SI 2025.2**.  
-Todos os direitos reservados à Equipe 10.
