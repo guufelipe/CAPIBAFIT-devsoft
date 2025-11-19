@@ -1,11 +1,13 @@
 {
-  "name": "CapibaFIT",
+  "name": "capibafit",
   "version": "1.0.0",
   "type": "module",
   "description": "Projeto de atividade física com recompensas Capiba",
   "main": "index.js",
   "scripts": {
-  "start": "npm --prefix src/frontend run dev",
+    "start:backend": "node src/backend/server.js",
+    "start:frontend": "npm --prefix src/frontend run dev",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
     "test": "jest"
   },
   "keywords": [
@@ -16,14 +18,15 @@
   ],
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "express": "^4.18.2",
-    "i": "^0.3.7",
     "pg": "^8.11.3"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",
     "@babel/preset-env": "^7.28.5",
     "babel-jest": "^30.2.0",
+    "concurrently": "^8.2.2",
     "jest": "^29.7.0"
   },
   "author": "",

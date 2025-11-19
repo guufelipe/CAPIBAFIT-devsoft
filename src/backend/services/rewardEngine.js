@@ -122,14 +122,28 @@ export async function processAndCreditActivity(userId, distanceKm, timeMinutes, 
             (creditResult.data && creditResult.data.transaction_id) ? creditResult.data.transaction_id : null
         ];
 
+        // após inserir a transação
         try {
             await query(transactionSql, transactionParams);
-            return { success: true, credited: capibasToCredit, details };
+
+            // Atualiza saldo do usuário (incrementa)
+            const updateBalanceSql = `
+                UPDATE users
+                SET balance = balance + $1
+                WHERE id = $2
+                RETURNING balance;
+            `;
+            const updateResult = await query(updateBalanceSql, [capibasToCredit, userId]);
+
+            // opcional: ler o saldo atualizado
+            const newBalance = updateResult.rows && updateResult.rows[0] ? updateResult.rows[0].balance : null;
+
+            return { success: true, credited: capibasToCredit, details, balance: newBalance };
         } catch (dbError) {
-            // Falha no registro local após sucesso externo: situação sensível que exige processos manuais/automáticos
             console.error("Erro ao registrar transação no BD local:", dbError);
             return { success: false, message: "Crédito na Capiba OK, mas falha no registro local." };
         }
+
     } else {
         // Falha ao comunicar com a Prefeitura ou erro retornado por ela
         return { success: false, message: "Falha na requisição à API da Prefeitura." };

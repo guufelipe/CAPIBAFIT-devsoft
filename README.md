@@ -5,13 +5,14 @@ Projeto educativo que converte atividade física em uma moeda virtual chamada "C
 
 > Nota rápida: o repositório não possui um servidor Node robusto pronto para produção — o `start` no root foi ajustado para subir o frontend de desenvolvimento (Vite). O backend contém módulos e serviços, mas não há um arquivo único `index.js` na raiz.
 
-## Status atual
-
-- Frontend: presente em `src/frontend` — usa Vite + React. Há scripts de desenvolvimento e build em `src/frontend/package.json`.
-- Backend: código em `src/backend` (APIs, integrações, serviços), mas sem um servidor principal pronto para executar (nenhum `index.js`/`server.js` na raiz que inicialize um app Express automaticamente).
-- Testes: presentes em `tests/` e usam Jest. `npm test` no root executa os testes (depende de `node_modules` estar instalado).
+Este repositório contém Frontend (Vite/React) e Backend (Node.js + Express + PostgreSQL).
 
 ## Como rodar (desenvolvimento)
+    Antes de clonar o projeto, você precisa ter instalado:
+        -Node.js
+        -PostgreSQL
+        -NPM / Yarn
+        -dotenv
 
 1) Instale dependências (na raiz):
 
@@ -54,20 +55,26 @@ Observação: se `jest` não for encontrado, rode `npm install` primeiro para in
 ## Estrutura de pastas (resumida)
 
 ```
-devsofot-2025-2/
-├─ README.md                # este arquivo
-├─ package.json             # scripts (start -> sobe frontend dev)
-├─ src/
-│  ├─ frontend/             # Vite + React app
-│  │  ├─ package.json
-│  │  └─ src/               # código React (main.jsx, components...)
-│  └─ backend/              # lógica do servidor, integrações e database
-│     ├─ api/
-│     ├─ database/
-│     ├─ integrations/
-│     └─ services/
-├─ docs/                    # documentação e ADRs
-└─ tests/                   # testes unitários/integracao (Jest)
+CAPIBAFIT-devsoft/
+│
+├── src/
+│   ├── backend/
+│   │   ├── api/          → Rotas Express
+│   │   ├── database/     → Conexão com PostgreSQL
+│   │   ├── integrations/ → APIs externas (mockadas)
+│   │   ├── services/     → Reward Engine + Fila
+│   │   ├── server.js     → Servidor Express
+│   │   └── .env
+│   │
+│   └── frontend/
+│       ├── src/          → Código React
+│       └── services/     → Chamadas à API
+│
+├── tests/                → Testes Unitarios e de integração
+├── package.json
+├── README.md
+└── docs/
+
 ```
 
 ## Observações e recomendações
@@ -87,14 +94,17 @@ npm --prefix src/frontend ci
 npm test
 ```
 
-## Contato / Contribuição
+## Rodando o Back:
+    npm run start:backend
 
-Se quiser, eu posso:
-- criar um servidor backend mínimo e scripts `dev`/`start` para rodar tudo junto;
-- adicionar instruções de variáveis de ambiente e um exemplo `.env.example`;
-- configurar um workflow de CI simples (GitHub Actions) que rode testes.
 
----
+## Rodando o Front:
+    npm run start:frontend
+
+## Rodando o Test:
+    npm test
+
+
 
 Licença: projeto para fins educacionais (Equipe 10 - SI 2025.2).
 

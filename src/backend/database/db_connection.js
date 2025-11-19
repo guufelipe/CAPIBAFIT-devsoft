@@ -1,3 +1,4 @@
+import 'dotenv/config';   // <--- ESSENCIAL!
 import { Pool } from 'pg';
 
 /*
@@ -18,15 +19,15 @@ import { Pool } from 'pg';
  * - Erros de conexão/consulta são propagados ao chamador para que
  *   as rotas/serviços possam tratá-los (retry/log/etc.).
  */
-
 const pool = new Pool({
-    
-    user: process.env.DB_USER,  // usuário do banco (ex.: 'postgres' ou usuário da aplicação)
-    host: process.env.DB_HOST, // host do banco (ex.: 'localhost' ou endereço do serviço)
-    database: process.env.DB_NAME, // nome do banco de dados
-    password: process.env.DB_PASSWORD, // senha do usuário do banco
-    port: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 5432, // porta do PostgreSQL
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,  // agora vem como string
+    port: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 5432,
 });
+
+
 
 /**
  * query(text, params?): Promise
