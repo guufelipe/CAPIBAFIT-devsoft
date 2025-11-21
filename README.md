@@ -182,4 +182,4 @@ Alterações de esquema do banco devem ser refletidas nas migrations e no `docs/
 
 ## Licença
 
-Projeto educacional — Equipe 10 - Sistemas de Informação 2025.2
+PROJETO EDUCACIONAL — Equipe 10 - DESENVOLVIMENTO DE SOFTWARE 2025.2 CIn-UFPE
