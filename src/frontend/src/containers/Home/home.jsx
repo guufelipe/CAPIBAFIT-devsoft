@@ -31,7 +31,7 @@ function Home(){
         const intervalo = setInterval(() => {
             // Chama a busca novamente sem ativar o loading (atualização silenciosa)
             buscarSaldo(); 
-        }, 5000);
+        }, 50);
 
         // 3. LIMPEZA (Muito Importante): 
         // Quando o usuário sair dessa tela, paramos o relógio para não gastar memória
